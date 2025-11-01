@@ -11,8 +11,20 @@ body {
     padding: 0;
     margin: 0;
     color: #333;
+    overflow-x: hidden;
 }
 
+
+i.fa-solid {
+    display: inline;
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
+/* ========================================================================= */
+/* --- 2. SIDEBAR STYLES (#sidebar) --- */
+/* ========================================================================= */
 #sidebar {
     height: 100%;
     width: var(--sidebar-width);
@@ -55,15 +67,9 @@ body {
     border-left: 5px solid var(--primary-color);
 }
 
-
-.navbar-toggler {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 1031;
-    display: none;
-}
-
+/* ========================================================================= */
+/* --- 3. CONTENT AREA AND DASHBOARD STYLES --- */
+/* ========================================================================= */
 
 .content-area {
     margin-left: var(--sidebar-width);
@@ -71,7 +77,6 @@ body {
     min-height: 100vh;
     padding: 20px;
 }
-
 
 main{
     margin: auto;
@@ -81,6 +86,47 @@ main{
     padding-top: 4rem;
 }
 
+#homeSection {
+
+    height: auto;
+    display: block;
+    background-image: none;
+    color: inherit;
+    text-shadow: none;
+    padding: 0;
+    margin-left: 0;
+    width: 100%;
+}
+
+.dashboard-card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    min-height: 150px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25) !important;
+}
+.dashboard-card .card-body {
+    padding: 1.5rem;
+}
+.dashboard-card i.fas {
+    color: rgba(255, 255, 255, 0.8);
+}
+.bg-warning .dashboard-card i.fas {
+    color: var(--dark-bg);
+}
+.dashboard-card h2 {
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+/* ========================================================================= */
+/* --- 4. CRUD AND TABLE STYLES --- */
+/* ========================================================================= */
 .crudSection, .box-container {
     background-color: #ffffff;
     box-sizing: border-box;
@@ -97,13 +143,6 @@ main{
     margin-bottom: 1rem;
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 0.5rem;
-}
-
-i{
-    display: inline ;
-    font-size: 2rem;
-    color: var(--accent-color);
-    margin-right: 10px;
 }
 
 .mybutton {
@@ -126,6 +165,10 @@ i{
     color: white;
 }
 
+
+/* ========================================================================= */
+/* --- 5. RESPONSIVE / MOBILE STYLES --- */
+/* ========================================================================= */
 @media (max-width: 992px) {
     .navbar-toggler {
         display: block;
@@ -133,7 +176,7 @@ i{
 
     #sidebar {
         width: 0;
-        left: -250px;
+        left: calc(-1 * var(--sidebar-width));
         padding-top: 60px;
     }
 
@@ -156,49 +199,6 @@ i{
     }
 
     #homeSection h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
-}
-/* --- HOME SECTION   --- */
-#homeSection {
-    min-height: 100vh;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    background-color: var(--main-bg);
-    display: block !important;
-}
-
-.dashboard-card {
-    border: none;
-    border-radius: 12px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    min-height: 150px;
-}
-.dashboard-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
-}
-.dashboard-card .card-body {
-    padding: 1.5rem;
-}
-.dashboard-card i.fas {
-    color: rgba(255, 255, 255, 0.8);
-}
-.bg-warning .dashboard-card i.fas {
-    color: var(--dark-bg);
-}
-
-.table-responsive {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow-x: auto;
-}
-.table {
-    margin-bottom: 0;
-}
-.table thead th {
-    background-color: var(--dark-bg);
-    color: white;
-    border-bottom: 2px solid var(--accent-color);
 }
