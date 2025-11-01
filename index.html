@@ -47,11 +47,382 @@
         </li>
     </ul>
 </nav>
-
 <button class="navbar-toggler" type="button" id="sidebarToggleBtn">
     <span class="navbar-toggler-icon"></span>
 </button>
+<div id="contentWrapper" class="content-area">
 
+
+    <!---------------------------------------------- Home Section--------------------------------------------------------->
+    <section id="homeSection" class="container-fluid">
+        <div class="text-center">
+            <h1>Welcome to SD POS</h1>
+            <p>Your all-in-one point of sale system</p>
+        </div>
+    </section>
+
+    <!------------------------------------------CUSTOMER SECTION-------------------------------------------------------->
+    <main id="customerSection" class="container">
+        <div class="d-flex align-items-center mb-4">
+            <i class="fa-solid fa-user-group"></i>
+            <h1 class="text-center mb-0 ms-2">CUSTOMER</h1>
+        </div>
+
+        <div class="row container-fluid p-0">
+            <section class="card crudSection col-12 col-lg-5 m-lg-3 " >
+                <div>
+                    <form>
+                        <div class="mb-3 ">
+                            <label for="inputCustomerId" class="form-label">Customer Id</label>
+                            <input type="text" class="form-control" id="inputCustomerId" aria-describedby="idHelp" readonly>
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="inputCustomerName" class="form-label">Customer Name</label>
+                            <input type="text" class="form-control" id="inputCustomerName">
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="inputAddress" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="inputAddress">
+                        </div>
+
+                        <div class="mb-3 " >
+                            <label for="inputTelephoneNo" class="form-label">Telephone No:</label>
+                            <input type="text" class="form-control" id="inputTelephoneNo">
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-2">
+                            <button type="button" class="btn btn-success btn-sm mybutton flex-fill me-2" id="btn_save_customer">SAVE</button>
+                            <button type="button" class="btn btn-primary btn-sm mybutton flex-fill me-2" id="btn_update_customer">UPDATE</button>
+                            <button type="button" class="btn btn-danger   btn-sm mybutton flex-fill me-2" id="btn_delete_customer">DELETE</button>
+                            <button type="button" class="btn btn-secondary btn-sm mybutton flex-fill" id="btn_clear_customer">CLEAR</button>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+            <section  class="card crudSection col m-lg-3 card" >
+                <h5>SEARCH CUSTOMER</h5>
+                <div class="row" >
+                    <div class="mb-3 col-6 ">
+                        <label for="inputCustomerTel" class="form-label"> Telephone</label>
+                        <input type="text" class="form-control" id="inputCustomerTel" aria-describedby="idHelp">
+                    </div>
+                    <div class="mb-3 col-6">
+                        <label for="inputCustomerName1" class="form-label"> Name</label>
+                        <input type="text" class="form-control" id="inputCustomerName1" readonly>
+                    </div>
+                </div>
+
+                <!--TABLE SECTION-->
+                <div class="border-dark rounded-2 Table" id="customerTable">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">NAME</th>
+                            <th scope="col">ADRESS</th>
+                            <th scope="col">TEL</th>
+                        </tr>
+                        </thead>
+                        <tbody id="customerTableBody">
+                        <tr>
+                            <th scope="row">C001</th>
+                            <td>John Doe</td>
+                            <td>Colombo</td>
+                            <td>077-1234567</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">C002</th>
+                            <td>Jane Smith</td>
+                            <td>Kandy</td>
+                            <td>071-9876543</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">C003</th>
+                            <td>Bimal Perera</td>
+                            <td>Galle</td>
+                            <td>070-5554444</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!---------------------------------------------ITEM SECTION---------------------------------------------------------->
+    <main id="itemSection" class="container">
+        <div class="d-flex align-items-center mb-4">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <h1 class="text-center mb-0 ms-2">ITEM</h1>
+        </div>
+
+        <!--2 SECTIONS-->
+        <div class="row container-fluid p-0">
+            <!--CRUD SECTION-->
+            <section class="card crudSection col-12 col-lg-5 m-lg-3" >
+                <div >
+                    <form>
+                        <div class="mb-3 ">
+                            <label for="inputItemId" class="form-label">Item Code</label>
+                            <input type="text" class="form-control" id="inputItemId" aria-describedby="idHelp" readonly>
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="inputItemDesc" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="inputItemDesc">
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="inputPrice" class="form-label">Unit Price</label>
+                            <input type="text" class="form-control" id="inputPrice">
+                        </div>
+
+                        <div class="mb-3 " >
+                            <label for="inputQty" class="form-label">Quantity</label>
+                            <input type="text" class="form-control" id="inputQty">
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-2">
+                            <button type="button" class="btn btn-success btn-sm mybutton flex-fill me-2" id="btn_save_item">SAVE</button>
+                            <button type="button" class="btn btn-primary btn-sm mybutton flex-fill me-2" id="btn_update_item">UPDATE</button>
+                            <button type="button" class="btn btn-danger btn-sm mybutton flex-fill me-2" id="btn_delete_item">DELETE</button>
+                            <button type="button" class="btn btn-secondary btn-sm mybutton flex-fill" id="btn_clear_item">CLEAR</button>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+
+            <!--SEARCH SECTION & TABLE-->
+            <section  class="card crudSection col m-lg-3" >
+                <h5>SEARCH ITEM </h5>
+                <div class="row" >
+                    <div class="mb-3 col-6 ">
+                        <label for="inputItemCode" class="form-label">Item Code</label>
+                        <input type="text" class="form-control" id="inputItemCode" aria-describedby="idHelp">
+                    </div>
+                    <div class="mb-3 col-6">
+                        <label for="inputDesc" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="inputDesc">
+                    </div>
+
+
+                </div>
+
+                <!--TABLE SECTION-->
+                <div class="border-dark rounded-2 cusTable ">
+                    <table class="table table-striped" id="itemTable">
+                        <thead>
+                        <tr>
+                            <th scope="col">CODE</th>
+                            <th scope="col">DESCRIPTION</th>
+                            <th scope="col">PRICE</th>
+                            <th scope="col">QTY</th>
+                        </tr>
+                        </thead>
+                        <tbody id="itemTableBody">
+                        <tr>
+                            <th scope="row">I001</th>
+                            <td>Soap</td>
+                            <td>200.00</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">I002</th>
+                            <td>Shampoo</td>
+                            <td>550.00</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">I003</th>
+                            <td>Rice 1kg</td>
+                            <td>220.00</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">I004</th>
+                            <td>Sugar 1kg</td>
+                            <td>300.00</td>
+                            <td>80</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-----------------------------------------ORDER SECTION------------------------------------------------------------>
+    <main id="orderSection" class="container">
+        <div class="d-flex align-items-center mb-4">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <h1 class="text-center mb-0 ms-2">PLACE ORDER</h1>
+        </div>
+        <!--section col one-->
+        <div class="row container-fluid p-0">
+            <!--2 SECTIONS-->
+            <div class="row col col-lg-6 col-md-12 col-sm-12 col-12 p-0">
+                <!--INVOICE SECTION-->
+                <section class="container" >
+
+                    <div class="box-container card">
+                        <h5>INVOICE DETAILS</h5>
+                        <form>
+                            <div class="row">
+                                <div class="mb-3 col-6 ">
+                                    <label for="inputOrderId" class="form-label">Order Id</label>
+                                    <input type="text" class="form-control" id="inputOrderId" aria-describedby="idHelp" readonly>
+                                </div>
+                                <div class="mb-3 col-6">
+                                    <label for="inputDate" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="inputDate">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="inputCustomerTelephone1" class="form-label">Customer Number</label>
+                                    <input type="text" class="form-control" id="inputCustomerTelephone1">
+                                </div>
+
+                                <div class="mb-3 col-6" >
+                                    <label for="inputCustomerName2" class="form-label">Customer Name</label>
+                                    <input type="text" class="form-control" id="inputCustomerName2" readonly>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+
+
+                    <div class="box-container card">
+                        <h5>ITEM DETAILS</h5>
+                        <form>
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="inputCode1" class="form-label">Item Code</label>
+                                    <select class="form-select" id="inputCode1">
+                                        <option> code</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3 col-6">
+                                    <label for="inputDesc1" class="form-label">Description</label>
+                                    <input type="text" class="form-control" id="inputDesc1" readonly>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="inputQtyOnHand" class="form-label">Qty OnHand</label>
+                                    <input type="text" class="form-control" id="inputQtyOnHand" readonly>
+                                </div>
+
+                                <div class="mb-3 col-6">
+                                    <label for="inputUnitPrice" class="form-label">Unit Price</label>
+                                    <input type="text" class="form-control" id="inputUnitPrice" aria-describedby="idHelp" readonly>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="inputOrderQty" class="form-label">Order Qty</label>
+                                    <input type="text" class="form-control" id="inputOrderQty" aria-describedby="idHelp">
+                                </div>
+
+                                <div class="col-6 pt-4">
+                                    <button type="button" class="btn btn-primary w-100" id="btn_addCart">Add To Cart</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+
+            <!--section col 2 -->
+            <div class="col-12 col-lg-6 p-0">
+                <div class="border-dark rounded-2 odTable box-container ">
+                    <h5>CART</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">QTY</th>
+                                <th scope="col">TOTAL</th>
+                                <th scope="col">REMOVE</th>
+                            </tr>
+                            </thead>
+                            <tbody id="cartTableBody">
+                            <tr>
+                                <th scope="row">I001</th>
+                                <td>200.00</td>
+                                <td>2</td>
+                                <td>400.00</td>
+                                <td><button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can fa-sm"></i></button></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">I003</th>
+                                <td>220.00</td>
+                                <td>5</td>
+                                <td>1100.00</td>
+                                <td><button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can fa-sm"></i></button></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <section class="col">
+                    <div class="box-container card m-lg-4 m-0 mt-3">
+                        <h5>PAYMENT</h5>
+                        <form>
+
+                            <div class="mb-3 row" >
+                                <label class="form-label col fw-bold text-success" id="lblNet">Net Total: <span id="netTotal">1500.00</span></label>
+                                <label class="form-label col fw-bold text-primary" id="lblSub">Sub Total: <span id="subTotal">1500.00</span></label>
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="inputDiscount" class="form-label">Discout:</label>
+                                    <input type="text" class="form-control" id="inputDiscount" value="0">
+                                </div>
+                                <div class="mb-3 col-6">
+                                    <label for="inputCash" class="form-label ">Cash:</label>
+                                    <input type="text" class="form-control" id="inputCash">
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="inputBalance" class="form-label">Balance:</label>
+                                    <input type="text" class="form-control bg-light" id="inputBalance" aria-describedby="idHelp" readonly>
+                                </div>
+
+                                <div class="col-6 pt-4 d-grid">
+                                    <button type="button" class="btn btn-success" id="btn_placeOrder">Place Order</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
 
 </body>
 </html>
