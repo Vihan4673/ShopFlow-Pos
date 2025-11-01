@@ -77,6 +77,9 @@ $("#btn_save_item").on('click',function (){
         loadItemCbx();
     }
 
+
+
+
 });
 
 function loadItemTable(){
@@ -194,6 +197,8 @@ $("#inputItemCode").on('keypress', function (e){
         loadItemTable();
     }
 });
+
+
 
 function searchItem(iCode){
 
