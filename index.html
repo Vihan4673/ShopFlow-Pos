@@ -152,15 +152,15 @@
 
     <!---------------------------------------------ITEM SECTION---------------------------------------------------------->
     <main id="itemSection" class="container">
-        <div class="d-flex align-items-center mb-4">
-            <i class="fa-solid fa-boxes-stacked"></i>
-            <h1 class="text-center mb-0 ms-2">ITEM</h1>
+        <div>
+            <i class="fa-solid fa-gift"></i>
+            <h1 class="text-center">ITEM</h1>
         </div>
 
         <!--2 SECTIONS-->
-        <div class="row container-fluid p-0">
+        <div class="row container-fluid">
             <!--CRUD SECTION-->
-            <section class="card crudSection col-12 col-lg-5 m-lg-3" >
+            <section class="card crudSection col-12 col-md-5 col m-3" >
                 <div >
                     <form>
                         <div class="mb-3 ">
@@ -181,11 +181,12 @@
                             <input type="text" class="form-control" id="inputQty">
                         </div>
 
-                        <div class="d-flex justify-content-between pt-2">
-                            <button type="button" class="btn btn-success btn-sm mybutton flex-fill me-2" id="btn_save_item">SAVE</button>
-                            <button type="button" class="btn btn-primary btn-sm mybutton flex-fill me-2" id="btn_update_item">UPDATE</button>
-                            <button type="button" class="btn btn-danger btn-sm mybutton flex-fill me-2" id="btn_delete_item">DELETE</button>
-                            <button type="button" class="btn btn-secondary btn-sm mybutton flex-fill" id="btn_clear_item">CLEAR</button>
+                        <div >
+
+                            <button type="button" class="btn btn-success btn-sm mybutton" id="btn_save_item">SAVE</button>
+                            <button type="button" class="btn btn-success btn-sm mybutton" id="btn_update_item">UPDATE</button>
+                            <button type="button" class="btn btn-danger btn-sm mybutton" id="btn_delete_item">DELETE</button>
+                            <button type="button" class="btn btn-success btn-sm mybutton" id="btn_clear_item">CLEAR</button>
                         </div>
 
                     </form>
@@ -193,14 +194,14 @@
             </section>
 
             <!--SEARCH SECTION & TABLE-->
-            <section  class="card crudSection col m-lg-3" >
+            <section class="card crudSection col m-3">
                 <h5>SEARCH ITEM </h5>
-                <div class="row" >
-                    <div class="mb-3 col-6 ">
+                <div class="row">
+                    <div class="mb-3 col ">
                         <label for="inputItemCode" class="form-label">Item Code</label>
                         <input type="text" class="form-control" id="inputItemCode" aria-describedby="idHelp">
                     </div>
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col">
                         <label for="inputDesc" class="form-label">Description</label>
                         <input type="text" class="form-control" id="inputDesc">
                     </div>
@@ -210,7 +211,7 @@
 
                 <!--TABLE SECTION-->
                 <div class="border-dark rounded-2 cusTable ">
-                    <table class="table table-striped" id="itemTable">
+                    <table class="table" id="itemTable">
                         <thead>
                         <tr>
                             <th scope="col">CODE</th>
@@ -223,26 +224,27 @@
                         <tr>
                             <th scope="row">I001</th>
                             <td>Soap</td>
-                            <td>200.00</td>
+                            <td>200</td>
                             <td>50</td>
                         </tr>
                         <tr>
-                            <th scope="row">I002</th>
-                            <td>Shampoo</td>
-                            <td>550.00</td>
-                            <td>30</td>
+                            <th scope="row">I001</th>
+                            <td>Soap</td>
+                            <td>200</td>
+                            <td>50</td>
                         </tr>
                         <tr>
-                            <th scope="row">I003</th>
-                            <td>Rice 1kg</td>
-                            <td>220.00</td>
-                            <td>100</td>
+                            <th scope="row">I001</th>
+                            <td>Soap</td>
+                            <td>200</td>
+                            <td>50</td>
                         </tr>
+
                         <tr>
-                            <th scope="row">I004</th>
-                            <td>Sugar 1kg</td>
-                            <td>300.00</td>
-                            <td>80</td>
+                            <th scope="row">I001</th>
+                            <td>Soap</td>
+                            <td>200</td>
+                            <td>50</td>
                         </tr>
                         </tbody>
                     </table>
@@ -252,20 +254,15 @@
             </section>
 
         </div>
-
     </main>
-
     <!-----------------------------------------ORDER SECTION------------------------------------------------------------>
     <main id="orderSection" class="container">
         <div class="d-flex align-items-center mb-4">
             <i class="fa-solid fa-cart-shopping"></i>
             <h1 class="text-center mb-0 ms-2">PLACE ORDER</h1>
         </div>
-        <!--section col one-->
         <div class="row container-fluid p-0">
-            <!--2 SECTIONS-->
             <div class="row col col-lg-6 col-md-12 col-sm-12 col-12 p-0">
-                <!--INVOICE SECTION-->
                 <section class="container" >
 
                     <div class="box-container card">
@@ -316,7 +313,6 @@
                                 </div>
                             </div>
 
-
                             <div class="row">
                                 <div class="mb-3 col-6">
                                     <label for="inputQtyOnHand" class="form-label">Qty OnHand</label>
@@ -328,7 +324,6 @@
                                     <input type="text" class="form-control" id="inputUnitPrice" aria-describedby="idHelp" readonly>
                                 </div>
                             </div>
-
 
                             <div class="row">
                                 <div class="mb-3 col-6">
@@ -345,8 +340,6 @@
                 </section>
             </div>
 
-
-            <!--section col 2 -->
             <div class="col-12 col-lg-6 p-0">
                 <div class="border-dark rounded-2 odTable box-container ">
                     <h5>CART</h5>
@@ -380,7 +373,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 </div>
 
                 <section class="col">
@@ -408,7 +400,6 @@
                                     <label for="inputBalance" class="form-label">Balance:</label>
                                     <input type="text" class="form-control bg-light" id="inputBalance" aria-describedby="idHelp" readonly>
                                 </div>
-
                                 <div class="col-6 pt-4 d-grid">
                                     <button type="button" class="btn btn-success" id="btn_placeOrder">Place Order</button>
                                 </div>
@@ -418,7 +409,6 @@
                     </div>
                 </section>
             </div>
-
         </div>
     </main>
 
@@ -428,7 +418,6 @@
             <i class="fa-solid fa-receipt"></i>
             <h1 class="text-center mb-0 ms-2">ORDER DETAILS</h1>
         </div>
-
         <div class="row container-fluid p-0">
             <section  class="card crudSection col-12 col-lg-5 m-lg-1 card" >
                 <h5>ORDERS</h5>
@@ -573,7 +562,7 @@
 <script src="assets/lib/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="module" src="Controller/CustomerController.js"></script>
-<script type="module" src="controller/ItemController.js"></script>
+<script type="module" src="Controller/ItemController.js"></script>
 <script type="module" src="controller/OrderController.js"></script>
 <script type="module" src="controller/OrderDetailController.js"></script>
 </body>
