@@ -16,8 +16,8 @@ $(document).ready(function (){
 })
 
 function generateNextOrderId(){
-   let id =  order_array.length +1;
-   return "O0" + id;
+    let id =  order_array.length +1;
+    return "O0" + id;
 }
 
 function setOrderId(){
@@ -60,7 +60,7 @@ export function loadItemCbx(){
         let data = ` <option>${item._code}</option>`
 
         console.log(data);
-            $("#inputCode1").append(data);
+        $("#inputCode1").append(data);
 
     })
 }
@@ -112,11 +112,11 @@ $("#btn_addCart").on('click', function (){
             clearItemSection();
             $("#inputDiscount").focus();
         }else{
-                cart_array[cartIndex].qty = qty;
-                cart_array[cartIndex].total = cart_array[cartIndex].qty * price;
-                loadCart();
-                setTotalValues();
-                clearItemSection();
+            cart_array[cartIndex].qty = qty;
+            cart_array[cartIndex].total = cart_array[cartIndex].qty * price;
+            loadCart();
+            setTotalValues();
+            clearItemSection();
 
         }
     }else{
@@ -151,19 +151,19 @@ $("#cartTableBody").on('click','button',function (){
 let netTotal=0;
 
 function setTotalValues(){
-     netTotal = calculateNetValue();
+    netTotal = calculateNetValue();
     $("#netTotal").text(`${netTotal}`);
 
     subTotal = netTotal;
     $("#subTotal").text(`${subTotal}`);
-   /* let dis = +$("#inputDiscount").val()/100 ;
-    if(dis == 0 ){
-        dis =1;
-    }
+    /* let dis = +$("#inputDiscount").val()/100 ;
+     if(dis == 0 ){
+         dis =1;
+     }
 
-    let discount = netTotal * dis;
-    let subTotal = netTotal - discount;
-    $("#subTotal").text(`${subTotal}`);*/
+     let discount = netTotal * dis;
+     let subTotal = netTotal - discount;
+     $("#subTotal").text(`${subTotal}`);*/
 
 
 }
@@ -171,7 +171,7 @@ function setTotalValues(){
 function calculateNetValue(){
     let total = 0;
     cart_array.map((cartItem, number)=>{
-       total += cartItem.total
+        total += cartItem.total
     })
 
     return total;
@@ -191,10 +191,10 @@ $("#inputDiscount").on('keypress', function (e){
             subTotal = netTotal - discount;
             $("#subTotal").text(`${subTotal}`);
         }
-    $("#inputCash").focus();
+        $("#inputCash").focus();
 
 
-}});
+    }});
 
 function clearItemSection(){
     $("#inputDesc1").val("");
@@ -305,14 +305,14 @@ $("#btn_placeOrder").on('click', function (){
 
 function updateItem(){
     cart_array.map((cartItem, number)=>{
-       let itemNumber = cartItem.itemId;
-       console.log(itemNumber);
-       let itemQty = cartItem.qty;
+        let itemNumber = cartItem.itemId;
+        console.log(itemNumber);
+        let itemQty = cartItem.qty;
         console.log(itemQty);
 
-       let item = item_array.find(item => item._code === itemNumber)
+        let item = item_array.find(item => item._code === itemNumber)
         console.log(item._desc);
-       item._qty  = item._qty-itemQty;
+        item._qty  = item._qty-itemQty;
 
     })
 }
