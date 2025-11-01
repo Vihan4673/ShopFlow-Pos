@@ -73,30 +73,6 @@ body {
 }
 
 
-#homeSection {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("https://placehold.co/1200x800/212529/FFFFFF?text=SD+POS+Background");
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-left: calc(-1 * var(--sidebar-width));
-    width: calc(100% + var(--sidebar-width));
-}
-
-#homeSection h1 {
-    font-size: 4rem;
-    margin-bottom: 20px;
-}
-#homeSection p {
-    font-size: 1.5rem;
-}
-
 main{
     margin: auto;
     width: 95%;
@@ -182,4 +158,47 @@ i{
     #homeSection h1 {
         font-size: 3rem;
     }
+}
+/* --- HOME SECTION   --- */
+#homeSection {
+    min-height: 100vh;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: var(--main-bg);
+    display: block !important;
+}
+
+.dashboard-card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    min-height: 150px;
+}
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+}
+.dashboard-card .card-body {
+    padding: 1.5rem;
+}
+.dashboard-card i.fas {
+    color: rgba(255, 255, 255, 0.8);
+}
+.bg-warning .dashboard-card i.fas {
+    color: var(--dark-bg);
+}
+
+.table-responsive {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+.table {
+    margin-bottom: 0;
+}
+.table thead th {
+    background-color: var(--dark-bg);
+    color: white;
+    border-bottom: 2px solid var(--accent-color);
 }

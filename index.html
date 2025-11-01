@@ -53,13 +53,65 @@
 <div id="contentWrapper" class="content-area">
 
 
-    <!---------------------------------------------- Home Section--------------------------------------------------------->
-    <section id="homeSection" class="container-fluid">
-        <div class="text-center">
-            <h1>Welcome to SD POS</h1>
-            <p>Your all-in-one point of sale system</p>
+    <!-------------------- Home Section --------------------------------->
+    <section id="homeSection" class="container-fluid pt-5">
+        <div class="container-fluid pt-5">
+            <div class="text-center mb-5 p-4 rounded-3 shadow-sm" style="background-color: #fff;">
+                <h1 class="display-4 fw-bold" style="color: var(--dark-bg);">POS Dashboard Overview</h1>
+                <p class="lead" style="color: #6c757d;">Quick summary of today's performance</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-xl-4 col-md-6">
+                    <div class="card dashboard-card bg-primary text-white shadow-lg">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-shopping-cart fa-3x me-3"></i>
+                                <div>
+                                    <div class="text-uppercase fw-bold opacity-75">Total Orders (Today)</div>
+                                    <h2 class="display-4" id="dashboardOrderCount">45</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-md-6">
+                    <div class="card dashboard-card bg-success text-white shadow-lg">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-users fa-3x me-3"></i>
+                                <div>
+                                    <div class="text-uppercase fw-bold opacity-75">Active Customers</div>
+                                    <h2 class="display-4" id="dashboardCustomerCount">120</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-12">
+                    <div class="card dashboard-card bg-warning text-dark shadow-lg">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-dollar-sign fa-3x me-3"></i>
+                                <div>
+                                    <div class="text-uppercase fw-bold opacity-75">Total Income (LKR)</div>
+                                    <h2 class="display-4" id="dashboardIncome">1,250,000</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center text-muted">
+                    <p>Data updated in real-time. Click on the sidebar links to manage inventory and transactions.</p>
+                </div>
+            </div>
         </div>
     </section>
+
 
     <!------------------------------------------CUSTOMER SECTION-------------------------------------------------------->
     <main id="customerSection" class="container">
@@ -254,6 +306,7 @@
             </section>
 
         </div>
+
     </main>
     <!-----------------------------------------ORDER SECTION------------------------------------------------------------>
     <main id="orderSection" class="container">
@@ -559,11 +612,10 @@
         }
     };
 </script>
-<script src="assets/lib/jquery.js"></script>
+<script src="assets/lib/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="module" src="Controller/CustomerController.js"></script>
 <script type="module" src="Controller/ItemController.js"></script>
 <script type="module" src="Controller/OrderController.js"></script>
-<script type="module" src="controller/OrderDetailController.js"></script>
 </body>
 </html>
