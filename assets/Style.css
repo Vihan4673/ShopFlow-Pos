@@ -5,6 +5,7 @@
     --primary-color: #0dcaf0;
     --accent-color: #4b9193;
 }
+
 body {
     background-color: var(--main-bg);
     padding: 0;
@@ -13,7 +14,6 @@ body {
     overflow-x: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 
 i.fa-solid {
     display: inline;
@@ -53,12 +53,12 @@ i.fa-solid {
     border: 1px solid rgba(255, 255, 255, 0.4);
     transition: background-color 0.3s;
 }
+
 .login-card input[type="text"]:focus,
 .login-card input[type="password"]:focus {
     background-color: rgba(255, 255, 255, 0.9);
     outline: none;
-    box-shadow: 0 0 0 2px var(--blue-500);
-}
+box-shadow: 0 0 5px var(--primary-color);}
 
 /* ---------- SIDEBAR ---------- */
 #sidebar {
@@ -90,7 +90,6 @@ i.fa-solid {
     text-align: center;
 }
 
-/* USER INFO ON TOP */
 #sidebar .user-info {
     position: sticky;
     top: 0;

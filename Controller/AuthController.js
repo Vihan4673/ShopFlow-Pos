@@ -15,7 +15,7 @@ class AuthController {
     init() {
         if(this.loginForm) this.loginForm.addEventListener('submit', e => this.handleLogin(e));
         if(this.logoutButton) this.logoutButton.addEventListener('click', () => this.handleLogout());
-        this.checkAuthStatus();
+        this.showLogin();
     }
 
     handleLogin(e){
@@ -24,8 +24,6 @@ class AuthController {
         const password = document.getElementById('password').value.trim();
 
         if(username === this.#validCredentials.username && password === this.#validCredentials.password){
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('username', username);
             this.showPOS(username);
         } else {
             Swal.fire({ icon:'error', title:'Login Failed', text:'Invalid username or password!'});
@@ -38,29 +36,19 @@ class AuthController {
         this.showLogin();
     }
 
-    checkAuthStatus(){
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
-        const username = localStorage.getItem('username');
-        if(isLoggedIn === 'true' && username) this.showPOS(username);
-        else this.showLogin();
-    }
-
     showPOS(username){
-        // Show dashboard
         this.loginSection.style.display = 'none';
         this.contentWrapper.style.display = 'block';
         if(this.sidebar) this.sidebar.style.display = 'block';
         this.contentWrapper.classList.add("sidebar-pushed");
         if(this.usernameDisplay) this.usernameDisplay.textContent = `Welcome, ${username}!`;
 
-        // Show home section, hide others
         const sections = ["homeSection","customerSection","itemSection","orderSection","orderDetailSection"];
         sections.forEach(id => {
             const el = document.getElementById(id);
             if(el) el.style.display = id === "homeSection" ? "block" : "none";
         });
 
-        // Activate home nav
         document.querySelectorAll("#sidebar .nav-link").forEach(link => link.classList.remove("active"));
         const homeNav = document.getElementById("home_nav");
         if(homeNav) homeNav.classList.add("active");
@@ -73,7 +61,6 @@ class AuthController {
         if(this.sidebar) this.sidebar.style.display = 'none';
         this.contentWrapper.classList.remove("sidebar-pushed");
 
-        // Hide all sections
         const sections = ["homeSection","customerSection","itemSection","orderSection","orderDetailSection"];
         sections.forEach(id => {
             const el = document.getElementById(id);
