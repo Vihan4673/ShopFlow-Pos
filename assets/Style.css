@@ -22,7 +22,7 @@ i.fa-solid {
     margin-right: 10px;
 }
 #login-section {
-    background: linear-gradient(135deg, #a7e9e8 0%, #d495ff 100%);
+    background: linear-gradient(135deg, #a7e9e8 0%, black 100%);
     position: fixed;
     top: 0;
     left: 0;
