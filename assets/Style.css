@@ -5,7 +5,6 @@
     --primary-color: #0dcaf0;
     --accent-color: #4b9193;
 }
-
 body {
     background-color: var(--main-bg);
     padding: 0;
@@ -15,26 +14,55 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ICON STYLE */
+
 i.fa-solid {
     display: inline;
     font-size: 2rem;
     color: var(--accent-color);
     margin-right: 10px;
 }
-
-/* LOGIN SECTION */
 #login-section {
+    background: linear-gradient(135deg, #a7e9e8 0%, #d495ff 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #f8f9fa;
+    z-index: 1050;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    max-width: 420px;
+    width: 90%;
+    transition: all 0.3s ease-in-out;
+}
+
+.login-card input[type="text"],
+.login-card input[type="password"] {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: background-color 0.3s;
+}
+.login-card input[type="text"]:focus,
+.login-card input[type="password"]:focus {
+    background-color: rgba(255, 255, 255, 0.9);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--blue-500);
 }
 
 /* ---------- SIDEBAR ---------- */
 #sidebar {
-    display: none; /* hidden until login */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;

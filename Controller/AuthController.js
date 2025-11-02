@@ -1,5 +1,5 @@
 class AuthController {
-    #validCredentials = { username: 'nihan', password: '1234' };
+    #validCredentials = { username: 'vihan', password: '1234' };
 
     constructor() {
         this.loginForm = document.getElementById('login-form');
@@ -46,6 +46,7 @@ class AuthController {
     }
 
     showPOS(username){
+        // Show dashboard
         this.loginSection.style.display = 'none';
         this.contentWrapper.style.display = 'block';
         if(this.sidebar) this.sidebar.style.display = 'block';
@@ -59,6 +60,7 @@ class AuthController {
             if(el) el.style.display = id === "homeSection" ? "block" : "none";
         });
 
+        // Activate home nav
         document.querySelectorAll("#sidebar .nav-link").forEach(link => link.classList.remove("active"));
         const homeNav = document.getElementById("home_nav");
         if(homeNav) homeNav.classList.add("active");
@@ -71,6 +73,7 @@ class AuthController {
         if(this.sidebar) this.sidebar.style.display = 'none';
         this.contentWrapper.classList.remove("sidebar-pushed");
 
+        // Hide all sections
         const sections = ["homeSection","customerSection","itemSection","orderSection","orderDetailSection"];
         sections.forEach(id => {
             const el = document.getElementById(id);
