@@ -12,9 +12,10 @@ body {
     margin: 0;
     color: #333;
     overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
+/* ICON STYLE */
 i.fa-solid {
     display: inline;
     font-size: 2rem;
@@ -22,20 +23,33 @@ i.fa-solid {
     margin-right: 10px;
 }
 
-/* ========================================================================= */
-/* --- 2. SIDEBAR STYLES (#sidebar) --- */
-/* ========================================================================= */
+/* LOGIN SECTION */
+#login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* ---------- SIDEBAR ---------- */
 #sidebar {
-    height: 100%;
-    width: var(--sidebar-width);
+    display: none; /* hidden until login */
     position: fixed;
-    z-index: 1030;
     top: 0;
     left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
     background-color: var(--dark-bg);
     padding-top: 40px;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
-    transition: width 0.3s, left 0.3s;
+    z-index: 1030;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    overflow-y: auto;
+    transition: all 0.3s;
+}
+
+#sidebar.show-sidebar {
+    display: block;
 }
 
 #sidebar .navbar-brand {
@@ -48,16 +62,35 @@ i.fa-solid {
     text-align: center;
 }
 
+/* USER INFO ON TOP */
+#sidebar .user-info {
+    position: sticky;
+    top: 0;
+    background-color: var(--dark-bg);
+    padding: 1rem;
+    text-align: center;
+    z-index: 10;
+}
+
+#sidebar .user-info h5 {
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+#sidebar .user-info button#logoutButton {
+    width: 90%;
+}
+
 #sidebar .nav-item {
     width: 100%;
 }
 
 #sidebar .nav-link {
     padding: 1rem 1.5rem;
-    color: rgba(255, 255, 255, 0.75);
-    transition: background-color 0.3s, color 0.3s, border-left 0.3s;
-    border-left: 5px solid transparent;
+    color: rgba(255,255,255,0.75);
     font-weight: 500;
+    border-left: 5px solid transparent;
+    transition: all 0.3s;
 }
 
 #sidebar .nav-link:hover,
@@ -67,72 +100,56 @@ i.fa-solid {
     border-left: 5px solid var(--primary-color);
 }
 
-/* ========================================================================= */
-/* --- 3. CONTENT AREA AND DASHBOARD STYLES --- */
-/* ========================================================================= */
-
-.content-area {
+/* ---------- CONTENT WRAPPER ---------- */
+#contentWrapper {
+    display: none; /* hidden until login */
     margin-left: var(--sidebar-width);
-    transition: margin-left 0.3s;
     min-height: 100vh;
-    padding: 20px;
+    transition: margin-left 0.3s;
 }
 
-main{
-    margin: auto;
-    width: 95%;
-    max-width: 1200px;
-    overflow: hidden;
-    padding-top: 4rem;
-}
-
-#homeSection {
-
-    height: auto;
+#contentWrapper.sidebar-pushed {
     display: block;
-    background-image: none;
-    color: inherit;
-    text-shadow: none;
-    padding: 0;
-    margin-left: 0;
-    width: 100%;
 }
 
+/* ---------- HOME DASHBOARD ---------- */
 .dashboard-card {
     border: none;
     border-radius: 12px;
-    transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
-    min-height: 150px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    min-height: 150px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .dashboard-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25) !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
 }
+
 .dashboard-card .card-body {
     padding: 1.5rem;
 }
+
 .dashboard-card i.fas {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255,255,255,0.8);
 }
+
 .bg-warning .dashboard-card i.fas {
     color: var(--dark-bg);
 }
+
 .dashboard-card h2 {
     font-weight: 700;
     font-size: 3rem;
 }
 
-/* ========================================================================= */
-/* --- 4. CRUD AND TABLE STYLES --- */
-/* ========================================================================= */
+/* ---------- CRUD / TABLE ---------- */
 .crudSection, .box-container {
     background-color: #ffffff;
-    box-sizing: border-box;
     padding: 1.5rem 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     margin-bottom: 1.5rem;
     border: none;
 }
@@ -147,7 +164,7 @@ main{
 
 .mybutton {
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     border-radius: 5px;
     font-weight: 500;
     margin-right: 5px;
@@ -157,7 +174,7 @@ main{
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .table thead {
@@ -165,40 +182,51 @@ main{
     color: white;
 }
 
+.table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
 
-/* ========================================================================= */
-/* --- 5. RESPONSIVE / MOBILE STYLES --- */
-/* ========================================================================= */
+/* ---------- MAIN / SECTION ---------- */
+main {
+    margin: auto;
+    width: 95%;
+    max-width: 1200px;
+    padding-top: 4rem;
+}
+
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 992px) {
     .navbar-toggler {
         display: block;
     }
 
     #sidebar {
-        width: 0;
-        left: calc(-1 * var(--sidebar-width));
-        padding-top: 60px;
+        left: -250px;
+        width: var(--sidebar-width);
     }
 
     #sidebar.show-sidebar {
-        width: var(--sidebar-width);
         left: 0;
     }
 
-    .content-area {
+    #contentWrapper {
         margin-left: 0;
     }
 
-    .content-area.sidebar-pushed {
+    #contentWrapper.sidebar-pushed {
         margin-left: var(--sidebar-width);
-    }
-
-    #homeSection {
-        margin-left: 0;
-        width: 100%;
     }
 
     #homeSection h1 {
         font-size: 2.5rem;
     }
+}
+
+/* ---------- MISC ---------- */
+body, input, button, select, textarea {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[readonly] {
+    background-color: #e9ecef;
 }
