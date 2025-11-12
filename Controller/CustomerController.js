@@ -1,202 +1,116 @@
-
-
-/*--------------------------------------------customer section----------------------------------------------------------------------*/
-
-// customer array
-import {customer_array} from "../db/database.js";
+import { customer_array } from "../db/database.js";
 import CustomerModel from "../models/CustomerModel.js";
-let customerIndex;
+import { DashboardController } from "./DashboardController.js";
+let customerIndex = -1;
 
-$(document).ready(function (){
-    $("#inputCustomerId").val(generatedId());
-})
+$(document).ready(function () {
+    setCustomerId();
+    loadCustomerTable();
+    DashboardController.updateDashboard();
+});
 
-
-function validEmail(email){
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-}
-
-function validMobile(mobile){
+// ===== VALIDATE  =====
+function validMobile(mobile) {
     const sriLankanMobileRegex = /^(?:\+94|0)?7[0-9]{8}$/;
     return sriLankanMobileRegex.test(mobile);
 }
 
-let loadCustomerTable = () =>{
-    $("#customerTableBody").empty()
-    customer_array.map((customer,number) => {
-        let data = `<tr>
-                           <td class="cus_id_val">${customer._id}</td>
-                           <td class="cus_name_val">${customer._name}</td>
-                           <td class="cus_address_val">${customer._address}</td>
-                           <td class="cus_telephone_val">${customer._telephone}</td>
-                           </tr>`
-        $("#customerTableBody").append(data);
-    })
+// ===== LOAD CUSTOMER TABLE =====
+function loadCustomerTable() {
+    $("#customerTableBody").empty();
+    customer_array.forEach((customer, index) => {
+        const row = `<tr data-index="${index}">
+                        <td class="cus_id_val">${customer._id}</td>
+                        <td class="cus_name_val">${customer._name}</td>
+                        <td class="cus_address_val">${customer._address}</td>
+                        <td class="cus_telephone_val">${customer._telephone}</td>
+                     </tr>`;
+        $("#customerTableBody").append(row);
+    });
 
-
-
+    DashboardController.updateDashboard();
 }
 
-let generatedId = function generatedId(){
-    console.log(customer_array.length + 1)
-    let id = customer_array.length + 1;
-    return "C0" + id;
-
+// ===== GENERATE CUSTOMER ID =====
+function generatedId() {
+    let maxId = 0;
+    customer_array.forEach(c => {
+        const num = parseInt(c._id.replace("C0", ""));
+        if (num > maxId) maxId = num;
+    });
+    return "C0" + (maxId + 1);
 }
 
-
-let setCustomerId = () => {
+function setCustomerId() {
     $("#inputCustomerId").val(generatedId());
 }
 
-/*===btn_save_customer===*/
-$("#btn_save_customer").on('click', function (){
-    console.log("clicked save customer");
-
-
-    let cusId = generatedId();
-    let cusName = $("#inputCustomerName").val();
-    let cusAddress = $("#inputAddress").val();
-    let cusTelephone = $("#inputTelephoneNo").val();
-
-
-    if(cusName.length === 0){
-        Swal.fire({
-            icon: "error",
-            title: "Not Saved",
-            text: "Name field empty",
-
-        });
-
-    }else if(cusAddress.length === 0){
-        Swal.fire({
-            icon: "error",
-            title: "Not Saved",
-            text: "Address field empty",
-
-        });
-    }else if(!validMobile(cusTelephone)){
-        Swal.fire({
-            icon: "error",
-            title: "Invalid Number",
-            text: "Enter valid number",
-
-        });
-    }else{
-        console.log("cusId ", cusId, "cusName", cusName,cusAddress, cusTelephone);
-
-        let customer = new CustomerModel(cusId, cusName, cusAddress, cusTelephone);
-
-        customer_array.push(customer);
-
-        loadCustomerTable();
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Customer has been saved",
-            showConfirmButton: false,
-            timer: 1500
-        });
-
-        clearFieldCustomer();
-        setCustomerId();
-    }
-
-
-
-})
-
-
-/*====details fill when table row clicked====*/
-$("#customerTable").on('click','tr',function (){
-    console.log("clicked");
-
-
-
-    customerIndex = $(this).index();
-    let testcustomer  = customer_array[customerIndex];
-
-    let id = testcustomer._id;
-    let name = testcustomer._name;
-    let address = testcustomer._address;
-    let telephone =  testcustomer._telephone;
-
-
-    console.log("testId:" ,testcustomer);
-    console.log("testId:" ,testcustomer.cus_id);
-    console.log("testName:" ,testcustomer.cus_name);
-    console.log("testAddress:" ,testcustomer.cus_address);
-
-    $("#inputCustomerId").val(id);
-    $("#inputCustomerName").val(name);
-    $("#inputAddress").val(address);
-    $("#inputTelephoneNo").val(telephone);
-
-
-});
-
-function clearFieldCustomer(){
-    $("#inputCustomerName").val("");
-    $("#inputAddress").val("");
-    $("#inputTelephoneNo").val("");
+function clearFields() {
+    $("#inputCustomerName, #inputAddress, #inputTelephoneNo").val("");
 }
 
-/*====btn_clear_customer===*/
-$("#btn_clear_customer").on('click',function (){
-    clearFieldCustomer();
+// ===== SAVE CUSTOMER =====
+$("#btn_save_customer").on('click', function () {
+    const cusId = generatedId();
+    const cusName = $("#inputCustomerName").val().trim();
+    const cusAddress = $("#inputAddress").val().trim();
+    const cusTelephone = $("#inputTelephoneNo").val().trim();
+
+    if (!cusName) return Swal.fire({ icon: "error", title: "Not Saved", text: "Name field empty" });
+    if (!cusAddress) return Swal.fire({ icon: "error", title: "Not Saved", text: "Address field empty" });
+    if (!validMobile(cusTelephone)) return Swal.fire({ icon: "error", title: "Invalid Number", text: "Enter valid number" });
+
+    const customer = new CustomerModel(cusId, cusName, cusAddress, cusTelephone);
+    customer_array.push(customer);
+    loadCustomerTable();
+    Swal.fire({ position: "top-end", icon: "success", title: "Customer has been saved", showConfirmButton: false, timer: 1500 });
+    clearFields();
     setCustomerId();
+});
 
-})
+// ===== SELECT CUSTOMER =====
+$("#customerTable").on('click', 'tr', function () {
+    customerIndex = $(this).data("index");
+    if (customerIndex === undefined) return;
 
-/*====update customer=====*/
+    const customer = customer_array[customerIndex];
+    $("#inputCustomerId").val(customer._id);
+    $("#inputCustomerName").val(customer._name);
+    $("#inputAddress").val(customer._address);
+    $("#inputTelephoneNo").val(customer._telephone);
+});
 
+// ===== CLEAR =====
+$("#btn_clear_customer").on('click', function () {
+    clearFields();
+    setCustomerId();
+    customerIndex = -1;
+});
+
+// ===== UPDATE CUSTOMER =====
 $("#btn_update_customer").on('click', function () {
-    //
+    if (customerIndex === -1) return Swal.fire({ icon: "error", title: "Select Customer", text: "Please select a customer from the table" });
 
-    let cusId = $("#inputCustomerId").val();
-    let cusName = $("#inputCustomerName").val();
-    let cusAddress = $("#inputAddress").val();
-    let cusTelephone = $("#inputTelephoneNo").val();
+    const cusId = $("#inputCustomerId").val();
+    const cusName = $("#inputCustomerName").val().trim();
+    const cusAddress = $("#inputAddress").val().trim();
+    const cusTelephone = $("#inputTelephoneNo").val().trim();
 
+    if (!cusName) return Swal.fire({ icon: "error", title: "Not Saved", text: "Name field empty" });
+    if (!cusAddress) return Swal.fire({ icon: "error", title: "Not Saved", text: "Address field empty" });
+    if (!validMobile(cusTelephone)) return Swal.fire({ icon: "error", title: "Invalid Number", text: "Enter valid number" });
 
-    if (cusName.length === 0) {
-        Swal.fire({
-            icon: "error",
-            title: "Not Saved",
-            text: "Name field empty",
+    customer_array[customerIndex] = new CustomerModel(cusId, cusName, cusAddress, cusTelephone);
+    loadCustomerTable();
+    clearFields();
+    setCustomerId();
+    customerIndex = -1;
+});
 
-        });
+// ===== DELETE CUSTOMER =====
+$("#btn_delete_customer").on('click', function () {
+    if (customerIndex === -1) return Swal.fire({ icon: "error", title: "Select Customer", text: "Please select a customer from the table" });
 
-    } else if (cusAddress.length === 0) {
-        Swal.fire({
-            icon: "error",
-            title: "Not Saved",
-            text: "Address field empty",
-
-        });
-    } else if (!validMobile(cusTelephone)) {
-        Swal.fire({
-            icon: "error",
-            title: "Invalid Number",
-            text: "Enter valid number",
-
-        });
-    } else {
-
-        let customer = new CustomerModel(cusId, cusName, cusAddress, cusTelephone);
-
-        customer_array[customerIndex] = customer;
-        loadCustomerTable();
-        clearFieldCustomer();
-        setCustomerId();
-
-    }
-})
-
-
-/*====delete customer=====*/
-$("#btn_delete_customer").on('click', function (){
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -207,45 +121,56 @@ $("#btn_delete_customer").on('click', function (){
         confirmButtonText: "Yes, delete it!"
     }).then((result) => {
         if (result.isConfirmed) {
-            customer_array.splice(customerIndex,1);
+            customer_array.splice(customerIndex, 1);
             loadCustomerTable();
-            clearFieldCustomer();
+            clearFields();
             setCustomerId();
-            Swal.fire({
-                title: "Deleted!",
-                text: "Customer has been deleted.",
-                icon: "success"
-            });
+            customerIndex = -1;
+            Swal.fire("Deleted!", "Customer has been deleted.", "success");
         }
     });
-
 });
 
+// ===== SEARCH CUSTOMER =====
+$("#customerSearch").on("input", function () {
+    const query = $(this).val().trim().toLowerCase();
+    $("#customerTableBody").empty();
 
-/*====Search Customer====*/
-
-$("#inputCustomerTel").on('keypress', function (e){
-    if(e.which === 13 ){
-        let telephoneNo = $(this).val();
-        searchCustomer(telephoneNo);
-    }else{
+    if (!query) {
         loadCustomerTable();
+        return;
+    }
+
+    const filteredCustomers = customer_array.filter(c =>
+        c._name.toLowerCase().includes(query) || c._telephone.includes(query)
+    );
+
+    if (filteredCustomers.length === 0) {
+        $("#customerTableBody").append(`<tr><td colspan="4" class="text-center">No matching customers found</td></tr>`);
+        $("#inputCustomerName1").val("");
+    } else {
+        filteredCustomers.forEach((customer) => {
+            const row = `<tr data-index="${customer_array.indexOf(customer)}">
+                            <td>${customer._id}</td>
+                            <td>${customer._name}</td>
+                            <td>${customer._address}</td>
+                            <td>${customer._telephone}</td>
+                         </tr>`;
+            $("#customerTableBody").append(row);
+        });
+
+        $("#inputCustomerName1").val(filteredCustomers.length === 1 ? filteredCustomers[0]._name : "");
     }
 });
 
+$("#customerTableBody").on("click", "tr", function () {
+    const index = $(this).data("index");
+    if (index === undefined) return;
 
-function searchCustomer(telephoneNo){
-    $("#customerTableBody").empty()
-    let customer = customer_array.find(customer => customer._telephone === telephoneNo);
-    let data = `<tr>
-                           <td class="cus_id_val">${customer._id}</td>
-                           <td class="cus_name_val">${customer._name}</td>
-                           <td class="cus_address_val">${customer._address}</td>
-                           <td class="cus_telephone_val">${customer._telephone}</td>
-                           </tr>`
-    $("#customerTableBody").append(data);
-    $("#inputCustomerName1").val(customer._name);
-}
-
-
-
+    customerIndex = index;
+    const customer = customer_array[index];
+    $("#inputCustomerId").val(customer._id);
+    $("#inputCustomerName").val(customer._name);
+    $("#inputAddress").val(customer._address);
+    $("#inputTelephoneNo").val(customer._telephone);
+});

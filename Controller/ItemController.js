@@ -1,6 +1,3 @@
-/*--------------------------------------------item section----------------------------------------------------------------------*/
-
-//item array
 import {customer_array, item_array} from "../db/database.js";
 import ItemModel from "../models/ItemModel.js";
 import {loadItemCbx} from "./OrderController.js";
@@ -21,7 +18,7 @@ function validPrice(price){
     return doubleRegex.test(price);
 }
 
-// /*===btn_save_item===*/
+// /*===save_item===*/
 
 $("#btn_save_item").on('click',function (){
     let itemId = generateItemId();
@@ -78,8 +75,6 @@ $("#btn_save_item").on('click',function (){
     }
 
 
-
-
 });
 
 function loadItemTable(){
@@ -105,7 +100,6 @@ function generateItemId(){
     return "I0" + nextId;
 }
 
-/*====details fill when table row clicked in item====*/
 $("#itemTable").on('click','tr',function (){
     console.log("item row clicked")
     let id = $(this).find('.item_id_val').text();
@@ -123,7 +117,7 @@ $("#itemTable").on('click','tr',function (){
 
 });
 
-/*====btn_clear_item===*/
+/*====clear_item===*/
 function clearField(){
     $("#inputItemDesc").val("");
     $("#inputPrice").val("");
@@ -137,7 +131,7 @@ $("#btn_clear_item").on('click',function (){
 
 })
 
-/*====btn_update_item===*/
+/*====update_item===*/
 $("#btn_update_item").on('click', function (){
     let id = $("#inputItemId").val();
     let item = item_array.find(item => item._code === id);
