@@ -1,6 +1,4 @@
-/* ==================================================================== */
-/* 1. ROOT VARIABLES & GLOBAL STYLES */
-/* ==================================================================== */
+
 :root {
     --sidebar-width: 260px;
     --main-bg: #f5f7fb;
@@ -32,14 +30,19 @@ body {
     line-height: 1.6;
 }
 
-/* ==================================================================== */
-/* 2. AUTHENTICATION SECTION */
-/* ==================================================================== */
-#auth-section {
-    background: linear-gradient(135deg, #38bdf8, #0ea5e9, #111827);
-    background-size: 300% 300%;
-    animation: gradientShift 8s ease infinite;
-}
+
+     /* AUTHENTICATION SECTION  */
+ #auth-section {
+     height: 100vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: linear-gradient(120deg, #0f172a, #1e3a8a, #0ea5e9);
+     background-size: 300% 300%;
+     animation: gradientShift 10s ease infinite;
+     font-family: "Poppins", sans-serif;
+     color: #fff;
+ }
 
 @keyframes gradientShift {
     0% { background-position: 0% 50%; }
@@ -47,52 +50,103 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-.auth-card {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    border-radius: var(--radius);
-    border: 1px solid rgba(255,255,255,0.2);
-    box-shadow: var(--shadow);
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    max-width: 400px;
-    transition: var(--transition);
+    padding: 20px;
+}
+
+.auth-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    padding: 40px 36px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .auth-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
-.auth-card h3 {
-    color: white;
+.auth-card h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
     font-weight: 700;
-}
-
-.auth-card p {
-    color: rgba(255,255,255,0.8);
-}
-
-.auth-card .form-control {
-    background: rgba(255, 255, 255, 0.85);
-    border: none;
-    border-radius: var(--radius);
-    padding: 12px;
-}
-
-.auth-card .form-control:focus {
-    background: #fff;
-    box-shadow: 0 0 8px rgba(56,189,248,0.6);
-}
-
-.auth-card button {
-    border-radius: var(--radius);
-    font-weight: 600;
     letter-spacing: 0.5px;
 }
 
-/* ==================================================================== */
-/* 3. SIDEBAR */
-/* ==================================================================== */
+.auth-card p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    color: #0f172a;
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.form-group input:focus {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.6);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0ea5e9, #2563eb);
+    transform: scale(1.03);
+}
+
+.switch-text {
+    margin-top: 18px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.switch-text a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.switch-text a:hover {
+    color: #0ea5e9;
+}
+
+/*  SIDEBAR */
 #sidebar {
     display: none;
     position: fixed;
@@ -148,9 +202,7 @@ body {
     border-radius: var(--radius);
 }
 
-/* ==================================================================== */
-/* 4. CONTENT WRAPPER */
-/* ==================================================================== */
+/*  CONTENT WRAPPER */
 #contentWrapper {
     display: none;
     margin-left: var(--sidebar-width);
@@ -163,9 +215,7 @@ body {
     display: block;
 }
 
-/* ==================================================================== */
-/* 5. DASHBOARD */
-/* ==================================================================== */
+/* DASHBOARD */
 .dashboard-card {
     border: none;
     border-radius: var(--radius);
@@ -192,9 +242,7 @@ body {
     font-weight: 700;
 }
 
-/* ==================================================================== */
-/* 6. CRUD SECTIONS */
-/* ==================================================================== */
+/*  CRUD SECTIONS */
 .card {
     border: none;
     border-radius: var(--radius);
@@ -242,17 +290,14 @@ body {
     background-color: rgba(14,165,233,0.05);
 }
 
-/* ==================================================================== */
-/* 7. ORDER SECTION */
-/* ==================================================================== */
+/*  ORDER SECTION */
 #orderSection input[readonly],
 #orderDetailSection input[readonly] {
     background-color: #f3f4f6;
 }
 
-/* ==================================================================== */
-/* 8. RESPONSIVE DESIGN */
-/* ==================================================================== */
+
+/*  RESPONSIVE DESIGN */
 .navbar-toggler {
     display: none;
     background: var(--primary-color);
