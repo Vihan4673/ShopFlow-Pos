@@ -1,5 +1,5 @@
 class AuthController {
-    #users = [{ username: '', password: '' }]; // initial default user
+    #users = [];
 
     constructor() {
         this.loginForm = document.getElementById('login-form');

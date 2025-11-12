@@ -54,7 +54,7 @@
 
 <!-- Sidebar -->
 <nav class="navbar-dark bg-dark" id="sidebar">
-    <a class="navbar-brand text-center mb-3" href="#">POS</a>
+    <a class="navbar-brand text-center mb-3" href="#">ShopFlow</a>
 
     <!-- USER INFO -->
     <div class="text-center mb-2">
@@ -86,7 +86,7 @@
 </nav>
 
 <button class="navbar-toggler" type="button" id="sidebarToggleBtn">
-    <span class="navbar-toggler-icon"></span>
+    <i class="fa-solid fa-bars"></i>
 </button>
 
 <!-- CONTENT -->
@@ -203,14 +203,12 @@
                 </div>
             </section>
 
-            <!-- Customer Table Card with Single Search Bar -->
             <section class="col-12 col-lg-7">
                 <div class="card shadow-sm">
                     <div class="card-header bg-info text-white">
                         <h5 class="mb-0">Search Customer</h5>
                     </div>
                     <div class="card-body">
-                        <!-- Single Search Bar -->
                         <div class="mb-3">
                             <input type="text" class="form-control" id="customerSearch" placeholder="Search by Name or Telephone">
                         </div>
@@ -227,24 +225,6 @@
                                 </tr>
                                 </thead>
                                 <tbody id="customerTableBody">
-                                <tr>
-                                    <th scope="row">C001</th>
-                                    <td>John Doe</td>
-                                    <td>Colombo</td>
-                                    <td>077-1234567</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">C002</th>
-                                    <td>Jane Smith</td>
-                                    <td>Kandy</td>
-                                    <td>071-9876543</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">C003</th>
-                                    <td>Bimal Perera</td>
-                                    <td>Galle</td>
-                                    <td>070-5554444</td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -262,7 +242,7 @@
         </div>
 
         <div class="row g-4">
-            <!-- CRUD FORM SECTION -->
+            <!-- CRUD  SECTION -->
             <section class="card col-12 col-md-5 p-3 shadow-sm">
                 <h5 class="mb-3">Manage Item</h5>
                 <form>
@@ -292,11 +272,9 @@
                 </form>
             </section>
 
-            <!-- SEARCH & TABLE SECTION -->
             <section class="card col-12 col-md-6 p-3 shadow-sm">
                 <h5 class="mb-3">Search & View Items</h5>
 
-                <!-- SINGLE SEARCH BAR -->
                 <input type="text" id="itemSearch" class="form-control mb-3" placeholder="Search by Code or Description">
 
                 <!-- TABLE -->
@@ -326,7 +304,6 @@
         </div>
 
         <div class="row g-4">
-            <!-- LEFT SIDE: Invoice + Item Details -->
             <div class="col-12 col-lg-6">
                 <!-- INVOICE DETAILS -->
                 <div class="card shadow-sm p-3 mb-4">
@@ -394,7 +371,6 @@
                 </div>
             </div>
 
-            <!-- RIGHT SIDE: Cart + Payment -->
             <div class="col-12 col-lg-6 d-flex flex-column gap-4">
                 <!-- CART -->
                 <div class="card shadow-sm p-3">

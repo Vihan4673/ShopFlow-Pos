@@ -3,17 +3,14 @@ const sidebar = document.getElementById("sidebar");
 const contentWrapper = document.getElementById("contentWrapper");
 const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
 
-
 function showSection(sectionId) {
     const sections = ["homeSection", "customerSection", "itemSection", "orderSection", "orderDetailSection"];
 
-    // Hide all sections
     sections.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = "none";
     });
 
-    // Show target section
     const target = document.getElementById(sectionId);
     if (target) target.style.display = "block";
 
@@ -23,19 +20,63 @@ function showSection(sectionId) {
     const navLink = document.getElementById(sectionId.replace("Section", "_nav"));
     if (navLink) navLink.classList.add("active");
 
-    if (window.innerWidth <= 992 && sidebar.classList.contains("show-sidebar")) toggleSidebar();
+    if (window.innerWidth <= 992 && sidebar.classList.contains("show-sidebar")) {
+        toggleSidebar();
+    }
+
     if (sectionId === "homeSection" && window.DashboardController) {
         window.DashboardController.updateDashboard();
     }
 }
 
+// ------------------------- Toggle Sidebar -------------------------
 function toggleSidebar() {
     sidebar.classList.toggle("show-sidebar");
     contentWrapper.classList.toggle("sidebar-pushed");
+
+    if (sidebarToggleBtn) {
+        const icon = sidebarToggleBtn.querySelector("i");
+        if (icon) icon.classList.toggle("fa-bars");
+        if (icon) icon.classList.toggle("fa-xmark");
+    }
 }
+
+document.addEventListener("click", (e) => {
+    if (window.innerWidth <= 992) {
+        if (sidebar.classList.contains("show-sidebar") &&
+            !sidebar.contains(e.target) &&
+            !sidebarToggleBtn.contains(e.target)) {
+            toggleSidebar();
+        }
+    }
+});
+
+// ------------------------- Responsive Handling -------------------------
+function handleResize() {
+    if (!sidebar || !contentWrapper || !sidebarToggleBtn) return;
+
+    const authSection = document.getElementById("auth-section");
+    if (authSection && authSection.style.display !== "none") {
+        sidebar.style.display = "none";
+        contentWrapper.style.display = "none";
+        sidebarToggleBtn.style.display = "none";
+        return;
+    }
+    if (window.innerWidth > 992) {
+        sidebar.classList.remove("show-sidebar");
+        contentWrapper.classList.add("sidebar-pushed");
+        sidebarToggleBtn.style.display = "none";
+    } else {
+        contentWrapper.classList.remove("sidebar-pushed");
+        sidebar.classList.remove("show-sidebar");
+        sidebarToggleBtn.style.display = "block";
+    }
+}
+window.addEventListener("resize", handleResize);
 
 if (sidebarToggleBtn) sidebarToggleBtn.addEventListener("click", toggleSidebar);
 
+// ------------------------- Navigation Links -------------------------
 document.getElementById("home_nav")?.addEventListener("click", () => showSection("homeSection"));
 document.getElementById("customer_nav")?.addEventListener("click", () => showSection("customerSection"));
 document.getElementById("item_nav")?.addEventListener("click", () => showSection("itemSection"));
@@ -44,35 +85,17 @@ document.getElementById("orderDetail_nav")?.addEventListener("click", () => show
 
 window.showSection = showSection;
 
-
 document.addEventListener("DOMContentLoaded", () => {
-    const loginSection = document.getElementById('login-section');
-    const usernameDisplay = document.getElementById('username-display');
+    const authSection = document.getElementById("auth-section");
 
-    if (loginSection) loginSection.style.display = 'flex';
-    if (contentWrapper) contentWrapper.style.display = 'none';
-    if (sidebar) sidebar.style.display = 'none';
-
-    ["homeSection", "customerSection", "itemSection", "orderSection", "orderDetailSection"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = "none";
-    });
-
-    if (usernameDisplay) usernameDisplay.textContent = '';
-});
-
-window.handleLoginSuccess = function (username) {
-    const loginSection = document.getElementById('login-section');
-
-    if (loginSection) loginSection.style.display = 'none';
-    if (contentWrapper) contentWrapper.style.display = 'block';
-    if (sidebar) sidebar.style.display = 'block';
-
-    const usernameDisplay = document.getElementById('username-display');
-    if (usernameDisplay) usernameDisplay.textContent = username;
-
-    showSection("homeSection");
-    if (window.DashboardController) {
-        window.DashboardController.init();
+    if (authSection && authSection.style.display !== "none") {
+        if (sidebar) sidebar.style.display = "none";
+        if (contentWrapper) contentWrapper.style.display = "none";
+        if (sidebarToggleBtn) sidebarToggleBtn.style.display = "none";
+    } else {
+        if (sidebar) sidebar.style.display = "block";
+        if (contentWrapper) contentWrapper.style.display = "block";
+        handleResize();
+        showSection("homeSection");
     }
-};
+});
